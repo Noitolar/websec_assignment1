@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Web</title>
+  <link rel="stylesheet" href="buttons.css" type="text/css" />
+</head>
+
+<body>
+  <script>
+    function onClickBtn(url) {
+      let req = new XMLHttpRequest()
+      req.open("GET", url, true)
+      req.onreadystatechange = () => {
+        if (req.readyState === 4 && req.status === 200) {
+          let data = req.responseText
+          alert(data)
+        }
+      }
+      req.send()
+    }
+  </script>
+  <h1>This is a normal web, really.</h1>
+  <button class="button button-3d button-caution"
+    onclick="onClickBtn('http://time.cybersecurity.seu.edu/api/date')">GET: /api/date</button>
+  <button class="button button-3d button-primary"
+    onclick="onClickBtn('http://time.cybersecurity.seu.edu/api/datecors')">GET: /api/datecors</button>
+</body>
+
+</html>

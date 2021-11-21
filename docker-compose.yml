@@ -1,0 +1,59 @@
+version: '3.5'
+services:
+  host1:
+    image: node
+    container_name: Host1
+    tty: true
+    command:
+      - /bin/bash
+      - -c 
+      - |
+        cd data
+        node server.js 
+    networks:
+      WSnetwork:
+        ipv4_address: 10.0.0.2
+    volumes:
+      -  ./host1:/data
+
+  host2:
+    image: node
+    container_name: Host2      
+    tty: true
+    command:
+      - /bin/bash
+      - -c 
+      - |
+        cd /data
+        node server.js
+    networks:
+      WSnetwork:
+        ipv4_address: 10.0.0.3
+    volumes:
+      -  ./host2:/data
+
+  host3:
+    image: node
+    container_name: Host3      
+    tty: true
+    command:
+      - /bin/bash
+      - -c 
+      - |
+        cd /data
+        node server.js
+    networks:
+      WSnetwork:
+        ipv4_address: 10.0.0.4
+    volumes:
+      -  ./host3:/data
+      
+
+networks:        
+  WSnetwork:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "10.0.0.0/24"
+
+  
